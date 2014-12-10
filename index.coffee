@@ -2,6 +2,9 @@ app = require('express')()
 settings = require './settings'
 renderer = require './renderer'
 
+app.get '/', (req, res, next) ->
+  renderer.renderRoot(res)
+
 app.get /\/.*/, (req, res, next) ->
   renderer.renderFile(res, req['originalUrl'])
 
