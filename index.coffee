@@ -4,10 +4,14 @@ express = require('express')
 app = express()
 
 token = process.env.GITHUB_TOKEN
+unless token?
+  console.log 'You must set the GITHUB_TOKEN environment variable'
+  process.exit -1
+
 port = process.env.PORT
 
-unless token?
-  console.log "You must set the GITHUB_TOKEN environment variable"
+unless port?
+  console.log 'You must set the PORT environment variable'
   process.exit -1
 
 client = new GitHubApi version: '3.0.0'
