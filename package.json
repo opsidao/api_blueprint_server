@@ -1,0 +1,15 @@
+{
+  "name": "api_blueprint_server",
+  "version": "0.0.1",
+  "description": "Generates and serves html versions of api blueprints from a github repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan González <opsi@opsiland.info>",
+  "license": "ISC",
+  "dependencies": {
+    "aglio": "^1.16.2",
+    "express": "^4.10.4"
+  }
+}
