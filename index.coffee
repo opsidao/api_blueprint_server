@@ -25,7 +25,9 @@ renderFileAt = (res, path) ->
 
   handle_response = (err, file) ->
     if err?
-      res.send "Error: #{err}"
+      res.send "Error: #{err['message']}"
+    else unless file['content']?
+      res.send "Not found"
     else
       blueprint = new Buffer(file['content'], 'base64').toString('utf8')
       aglio.render blueprint, 'slate-collapsible', (err, html, warnings) ->
