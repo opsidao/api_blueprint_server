@@ -4,6 +4,7 @@ express = require('express')
 app = express()
 
 token = process.env.GITHUB_TOKEN
+port = process.env.PORT
 
 unless token?
   console.log "You must set the GITHUB_TOKEN environment variable"
@@ -35,6 +36,6 @@ app.get /\/.*/, (req, res, next) ->
   originalPath = req['originalUrl']
   renderFileAt(res, originalPath)
 
-server = app.listen 5454, ->
+server = app.listen port, ->
   console.log 'Api blueprint server started'
 
