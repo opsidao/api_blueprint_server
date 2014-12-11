@@ -1,0 +1,12 @@
+doctype
+html
+  head
+    title Api Blueprint server
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    h1 Api Blueprint documentation browser
+    ul
+      each file in files
+        li
+          a(href=file)= file
+

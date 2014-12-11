@@ -31,12 +31,7 @@ exports.renderRoot = (res) ->
     if err?
       res.send "Error: #{err['message']}"
     else
-      html = '<ul>'
-      for file in folderContents
-        fileName = file['name']
-        html += "<li><a href='#{fileName}'>#{fileName}</a></li>"
-      html += '</ul>'
-
-      res.send html
+      files = folderContents.map (file) -> file['name']
+      res.render 'index', { files: files }
 
   client.repos.getContent repoInfo(''), render
