@@ -4,7 +4,7 @@
   "description": "Generates and serves html versions of api blueprints from a github repository",
   "main": "index.coffee",
   "scripts": {
-    "start": "coffee index.coffee"
+    "start": "coffee app.coffee"
   },
   "author": "Juan González <opsi@opsiland.info>",
   "license": "MIT",
