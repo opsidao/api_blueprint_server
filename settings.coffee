@@ -1,6 +1,8 @@
 settings =
+  basic_auth_user: process.env.BASIC_AUTH_USER
+  basic_auth_password: process.env.BASIC_AUTH_PASSWORD
   port: process.env.PORT
-  token: process.env.GITHUB_TOKEN
+  github_token: process.env.GITHUB_TOKEN
   repo_user: process.env.REPO_USER
   repo_name: process.env.REPO_NAME
 
@@ -13,7 +15,9 @@ for setting of settings
 if missing_settings_count > 0
   process.exit 1
 
-exports.github_token = settings['token']
+exports.basic_auth_user = settings['basic_auth_user']
+exports.basic_auth_password = settings['basic_auth_password']
+exports.github_token = settings['github_token']
 exports.port = settings['port']
 exports.repo_name = settings['repo_name']
 exports.repo_user = settings['repo_user']

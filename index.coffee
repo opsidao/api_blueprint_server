@@ -1,4 +1,5 @@
 express = require 'express'
+basicAuth = require 'basic-auth-connect'
 app = express()
 settings = require './settings'
 stylus = require 'stylus'
@@ -13,6 +14,8 @@ app.use stylus.middleware
   compile: (str, path) ->
     stylus(str).set('filename', path).use(nib())
 app.use(express.static(__dirname + '/public'))
+
+app.use basicAuth(settings.basic_auth_user, settings.basic_auth_password)
 
 app.get '/', (req, res, next) ->
   renderer.renderRoot(res)
