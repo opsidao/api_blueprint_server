@@ -11,6 +11,8 @@
     "node": "0.10.x"
   },
   "license": "MIT",
+  "repository": "https://github.com/opsidao/api_blueprint_server",
+  "readme": "https://github.com/opsidao/api_blueprint_server/blob/master/README.md",
   "dependencies": {
     "aglio": "^1.16.2",
     "basic-auth-connect": "^1.0.0",
