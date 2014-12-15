@@ -1,6 +1,7 @@
 rfr = require 'rfr'
 
-client = rfr 'lib/github_client'
+cache = rfr 'lib/cache'
+githubClient = rfr 'lib/github_client'
 settings = rfr 'lib/settings'
 
 repoInfo =
@@ -13,9 +14,18 @@ exports.index = (req, res) ->
     if err?
       res.send "Failed listing: #{err['message']}"
     else
+      githubClient.logResponse folderContents
       files = folderContents.map (file) ->
         name: file['name']
         url: file['html_url']
+      cache.set 'root', files
       res.render 'root/index', { files: files }
 
-  client.repos.getContent repoInfo, render
+  cached = cache.get('root')['root']
+
+  if cached
+    console.log "Serving cached root: #{req}"
+    res.render 'root/index', { files: cached }
+  else
+    console.log "Updating cache for root #{req}"
+    githubClient.repos.getContent repoInfo, render

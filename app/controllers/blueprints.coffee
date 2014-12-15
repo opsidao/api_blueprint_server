@@ -2,6 +2,7 @@ rfr = require 'rfr'
 
 aglio = require 'aglio'
 
+cache = rfr 'lib/cache'
 client = rfr 'lib/github_client'
 settings = rfr 'lib/settings'
 
@@ -12,6 +13,8 @@ repoInfo = (path) ->
 
 exports.index = (req, res) ->
   path = req['originalUrl']
+  cache_key = "blueprints-#{path}"
+
   render = (err, file) ->
     if err?
       res.send "Error: #{err['message']}"
@@ -23,6 +26,14 @@ exports.index = (req, res) ->
         if err?
           console.log "Error rendering: #{err}"
         else
+          cache.set cache_key, html
           res.send html
 
-  client.repos.getContent repoInfo(path), render
+  cached = cache.get(cache_key)[cache_key]
+
+  if cached
+    console.log "Serving cached path '#{path}'"
+    res.send cached
+  else
+    console.log "Updating cache for path '#{path}'"
+    client.repos.getContent repoInfo(path), render
