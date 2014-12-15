@@ -13,7 +13,9 @@ exports.index = (req, res) ->
     if err?
       res.send "Failed listing: #{err['message']}"
     else
-      files = folderContents.map (file) -> file['name']
+      files = folderContents.map (file) ->
+        name: file['name']
+        url: file['html_url']
       res.render 'root/index', { files: files }
 
   client.repos.getContent repoInfo, render

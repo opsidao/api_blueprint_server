@@ -8,5 +8,7 @@ html
     ul
       each file in files
         li
-          a(href=file)= file
+          a.button(href=file['name'])= file['name']
+          a(href=file['url']) Source
+
 
