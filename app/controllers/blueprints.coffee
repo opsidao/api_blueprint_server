@@ -1,16 +1,17 @@
-aglio = require 'aglio'
-settings = require './settings'
-GitHubApi = require 'github'
+rfr = require 'rfr'
 
-client = new GitHubApi version: '3.0.0'
-client.authenticate type: 'oauth', token: settings.github_token
+aglio = require 'aglio'
+
+client = rfr 'lib/github_client'
+settings = rfr 'lib/settings'
 
 repoInfo = (path) ->
   user: settings.repo_user
   repo: settings.repo_name
   path: path
 
-exports.renderFile = (res, path) ->
+exports.index = (req, res) ->
+  path = req['originalUrl']
   render = (err, file) ->
     if err?
       res.send "Error: #{err['message']}"
@@ -25,13 +26,3 @@ exports.renderFile = (res, path) ->
           res.send html
 
   client.repos.getContent repoInfo(path), render
-
-exports.renderRoot = (res) ->
-  render = (err, folderContents) ->
-    if err?
-      res.send "Error: #{err['message']}"
-    else
-      files = folderContents.map (file) -> file['name']
-      res.render 'index', { files: files }
-
-  client.repos.getContent repoInfo(''), render
