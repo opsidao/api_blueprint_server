@@ -1,12 +1,16 @@
 # Requires
 express = require 'express'
 basicAuth = require 'basic-auth-connect'
+favicon = require 'serve-favicon'
 settings = require './lib/settings'
 stylus = require 'stylus'
 nib = require 'nib'
 
 # Initialize app
 app = express()
+
+# Serve favicon
+app.use favicon(__dirname + '/public/favicon.ico')
 
 # Setup views
 app.set('views', __dirname + '/app/views')
@@ -29,4 +33,3 @@ app.get /\/.*/, require('./app/controllers/blueprints').index
 # Let's listen!
 server = app.listen settings.port, ->
   console.log 'Api blueprint server started'
-
