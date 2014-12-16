@@ -35,6 +35,9 @@ settings are required:
   the site.
 - Branch support so you can preview your pull requests before merging
   them.
+- Related to that, allow registering for github callbacks to post a link
+  to pull requests in the served github repository so we can put a link
+  to that branch's html representation as a comment in the pull request.
 - Custom theme support, to allow branding of the site.
 - Proper layout.
 - Improved logging.
