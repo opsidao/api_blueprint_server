@@ -24,3 +24,13 @@ settings are required:
 - REPO_USER: The user part of your repository (i.e. your username or
   organization name).
 - REPO_NAME: The name of the repository.
+
+## Wishlist
+
+- Login with Github, requiring access to the served repository to access
+  the site.
+- Branch support so you can preview your pull requests before merging
+  them
+- Custom theme support, to allow branding of the site
+- Proper layout
+- Improved logging
