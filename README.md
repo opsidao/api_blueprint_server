@@ -27,10 +27,13 @@ settings are required:
 
 ## Wishlist
 
+- Integrate a testing framework and start testing stuff ([Vows.js](vowsjs.org)
+  looks interesting, maybe with the [should](https://www.npmjs.com/package/should)
+  package).
 - Login with Github, requiring access to the served repository to access
   the site.
 - Branch support so you can preview your pull requests before merging
-  them
-- Custom theme support, to allow branding of the site
-- Proper layout
-- Improved logging
+  them.
+- Custom theme support, to allow branding of the site.
+- Proper layout.
+- Improved logging.
