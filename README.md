@@ -30,6 +30,7 @@ settings are required:
 - Integrate a testing framework and start testing stuff ([Vows.js](vowsjs.org)
   looks interesting, maybe with the [should](https://www.npmjs.com/package/should)
   package).
+- Allow to serve a local folder, to use it during development.
 - Login with Github, requiring access to the served repository to access
   the site.
 - Branch support so you can preview your pull requests before merging
