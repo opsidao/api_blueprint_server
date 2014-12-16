@@ -1,14 +1,13 @@
-doctype
-html
-  head
-    title Api Blueprint server
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    h1 Your blueprints:
-    ul
-      each file in files
-        li
-          a.button(href=file['name'])= file['name']
-          a(href=file['url']) Source
+extends ../layout
+
+block menu
+  h1 Your blueprints:
+
+block content
+  ul
+    each file in files
+      li
+        a.button(href=file['name'])= file['name']
+        a(href=file['url']) Source
 
 

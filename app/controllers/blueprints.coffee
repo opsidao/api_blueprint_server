@@ -12,7 +12,7 @@ repoInfo = (path) ->
   path: path
 
 exports.index = (req, res) ->
-  path = req['originalUrl']
+  path = req.params.file_name
   cache_key = "blueprints-#{path}"
 
   render = (err, file) ->

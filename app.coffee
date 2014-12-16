@@ -28,7 +28,7 @@ app.use basicAuth(settings.basic_auth_user, settings.basic_auth_password)
 
 # Configure routes
 app.get '/', require('./app/controllers/root').index
-app.get /\/.*/, require('./app/controllers/blueprints').index
+app.get '/:file_name', require('./app/controllers/blueprints').index
 
 # Let's listen!
 server = app.listen settings.port, ->
