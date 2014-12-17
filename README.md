@@ -25,7 +25,7 @@ settings are required:
   organization name).
 - REPO_NAME: The name of the repository.
 
-## Wishlist
+## Wishlist (In no particular order)
 
 - Integrate a testing framework and start testing stuff ([Vows.js](vowsjs.org)
   looks interesting, maybe with the [should](https://www.npmjs.com/package/should)
@@ -41,3 +41,4 @@ settings are required:
 - Custom theme support, to allow branding of the site.
 - Proper layout.
 - Improved logging.
+- Support for validations with connection to the Github Status API
