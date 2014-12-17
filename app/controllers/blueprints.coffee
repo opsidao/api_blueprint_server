@@ -22,7 +22,7 @@ exports.index = (req, res) ->
       res.send "Not found"
     else
       blueprint = new Buffer(file['content'], 'base64').toString('utf8')
-      aglio.render blueprint, 'slate-collapsible', (err, html, warnings) ->
+      aglio.render blueprint, 'default', (err, html, warnings) ->
         if err?
           console.log "Error rendering: #{err}"
         else
