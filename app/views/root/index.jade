@@ -1,13 +1,19 @@
 extends ../layout
 
 block menu
-  h1 Your blueprints:
+  .container-fluid
+    .navbar-brand API blueprints
 
 block content
-  ul
-    each file in files
-      li
-        a.button(href=file['name'])= file['name']
-        a(href=file['url']) Source
-
-
+  table.table.table-condensed
+    thead
+      tr
+        th Filename
+        th link to Github source
+    tbody
+      each file in files
+        tr
+          td
+            a.button(href=file['name'])= file['name']
+          td
+            a(href=file['url']) Source
