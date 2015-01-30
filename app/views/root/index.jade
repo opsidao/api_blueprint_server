@@ -2,7 +2,30 @@ extends ../layout
 
 block menu
   .container-fluid
-    .navbar-brand API blueprints
+    .navbar-header
+      .navbar-brand API blueprints
+    .collapse.navbar-collapse.navbar-right
+      ul.nav.navbar-nav
+        li.dropdown
+          a.dropdown-toggle(data-toggle = 'dropdown', role = 'button', aria-expanded = false)
+            span Current branch: #{branch}
+            span.caret
+          ul.dropdown-menu(role = 'menu')
+            if branch == 'master'
+              li.active
+                a(href='?branch=master') master
+            else
+              li
+                a(href='?branch=master') master
+            li.divider
+            each remote_branch in branches
+              if remote_branch.name != 'master'
+                if remote_branch.name == branch
+                  li.active
+                    a(href="?branch=#{remote_branch.name}")= remote_branch.name
+                else
+                  li
+                    a(href="?branch=#{remote_branch.name}")= remote_branch.name
 
 block content
   table.table.table-condensed
@@ -14,6 +37,6 @@ block content
       each file in files
         tr
           td
-            a.button(href=file['name'])= file['name']
+            a.button(href="#{file['name']}?branch=#{branch}")= file['name']
           td
             a(href=file['url']) Source

@@ -6,14 +6,19 @@ cache = rfr 'lib/cache'
 client = rfr 'lib/github_client'
 settings = rfr 'lib/settings'
 
-repoInfo = (path) ->
+repoInfo = (path, branch) ->
   user: settings.repo_user
+  ref: if branch? then branch else 'master'
   repo: settings.repo_name
   path: path
 
 exports.index = (req, res) ->
   path = req.params.file_name
-  cache_key = "blueprints-#{path}"
+  branch = req.param('branch')
+
+  info = repoInfo(path, branch)
+
+  cache_key = "#{info.ref}-#{path}-blueprints"
 
   render = (err, file) ->
     if err?
@@ -32,8 +37,8 @@ exports.index = (req, res) ->
   cached = cache.get(cache_key)[cache_key]
 
   if cached
-    console.log "Serving cached path '#{path}'"
+    console.log "Serving cached path '#{cache_key}'"
     res.send cached
   else
-    console.log "Updating cache for path '#{path}'"
-    client.repos.getContent repoInfo(path), render
+    console.log "Updating cache for path '#{cache_key}'"
+    client.repos.getContent info, render
