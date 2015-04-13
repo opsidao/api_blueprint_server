@@ -6,19 +6,16 @@ cache = rfr 'lib/cache'
 client = rfr 'lib/github_client'
 settings = rfr 'lib/settings'
 
-repoInfo = (path, branch) ->
-  user: settings.repo_user
-  ref: if branch? then branch else 'master'
-  repo: settings.repo_name
-  path: path
-
 exports.index = (req, res) ->
-  path = req.params.file_name
+  dir = req.param('dir')
+  dir = if dir? then "#{dir}/" else ''
+
+  path = "#{dir}#{req.params.file_name}"
   branch = req.param('branch')
 
-  info = repoInfo(path, branch)
+  info = settings.repo_info(branch, path)
 
-  cache_key = "#{info.ref}-#{path}-blueprints"
+  cache_key = "#{info.ref}-#{path}"
 
   render = (err, file) ->
     if err?

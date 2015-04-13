@@ -21,3 +21,9 @@ exports.github_token = settings['github_token']
 exports.port = settings['port']
 exports.repo_name = settings['repo_name']
 exports.repo_user = settings['repo_user']
+
+exports.repo_info = (branch, path) ->
+  user: settings['repo_user']
+  ref: if branch? then branch else 'master'
+  repo: settings['repo_name']
+  path: if path? then path else ''
