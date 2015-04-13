@@ -5,7 +5,7 @@ publish a Github repository populated with API blueprints to a Heroku
 Dyno.
 
 Notice that I basically have no idea about node so you wouldn't be too precautious
-if you checked the code before using this... you've been warmed ;)
+if you checked the code before using this... you've been warned ;)
 
 ## Configuration
 
