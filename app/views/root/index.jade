@@ -43,8 +43,8 @@ block content
             else
               span.glyphicon.glyphicon-file
               if file['dir'] != undefined
-                a.button(href="#{file['name']}?branch=#{branch}&dir=#{file['dir']}")= file['name']
+                a.button(href="#{file['name']}?branch=#{branch}&sha=#{file['sha']}&dir=#{file['dir']}")= file['name']
               else
-                a.button(href="#{file['name']}?branch=#{branch}")= file['name']
+                a.button(href="#{file['name']}?branch=#{branch}&sha=#{file['sha']}")= file['name']
           td
             a(href=file['url']) Source

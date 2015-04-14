@@ -27,3 +27,4 @@ exports.repo_info = (branch, path) ->
   ref: if branch? then branch else 'master'
   repo: settings['repo_name']
   path: if path? then path else ''
+  sha: ''

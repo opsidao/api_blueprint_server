@@ -20,11 +20,12 @@ exports.index = (req, res) ->
     else
       githubClient.logResponse folderContents
       files = folderContents.map (file) ->
+        dir: req.param('dir')
         name: file['name']
         path: file['path']
+        sha: file['sha']
         url:  file['html_url']
         type: file['type']
-        dir: req.param('dir')
 
       files = files.sort (a, b) ->
         if a['type'] == b['type']
