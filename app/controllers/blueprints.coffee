@@ -38,4 +38,10 @@ exports.index = (req, res) ->
     res.send cached
   else
     console.log "Updating cache for path '#{cache_key}'"
-    client.repos.getContent info, render
+    blob_info = {
+      user: info.user
+      repo: info.repo
+      sha: req.param('sha')
+    }
+
+    client.gitdata.getBlob blob_info, render
