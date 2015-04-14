@@ -8,7 +8,7 @@
   },
   "author": "Juan González <opsi@opsiland.info>",
   "engines": {
-    "node": "0.10.x"
+    "node": "0.12.x"
   },
   "license": "MIT",
   "repository": "https://github.com/opsidao/api_blueprint_server",
