@@ -27,7 +27,7 @@ settings are required:
 
 ## Wishlist (In no particular order)
 
-- Support for folders
+- ~~Support for folders~~
 - Integrate a testing framework and start testing stuff ([Vows.js](vowsjs.org)
   looks interesting, maybe with the [should](https://www.npmjs.com/package/should)
   package).
