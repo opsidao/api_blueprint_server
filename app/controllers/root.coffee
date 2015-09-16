@@ -5,8 +5,8 @@ githubClient = rfr 'lib/github_client'
 settings = rfr 'lib/settings'
 
 exports.index = (req, res) ->
-  dir = req.param('dir')
-  branch = req.param('branch')
+  dir = req.query.dir || ''
+  branch = req.query.branch
   branches = [branch]
 
   info = settings.repo_info(branch, dir)
@@ -20,7 +20,7 @@ exports.index = (req, res) ->
     else
       githubClient.logResponse folderContents
       files = folderContents.map (file) ->
-        dir: req.param('dir')
+        dir: dir
         name: file['name']
         path: file['path']
         sha: file['sha']
@@ -47,11 +47,11 @@ exports.index = (req, res) ->
     branches = res
     githubClient.repos.getContent info, render
 
-  cached_files = cache.get(files_cache_key)[files_cache_key]
+  cached_files = cache.get(files_cache_key)
+  branches = cache.get(branches_cache_key)
 
   if cached_files
     console.log "Serving cached root #{files_cache_key}"
-    branches = cache.get(branches_cache_key)[branches_cache_key]
     res.render 'root/index', { files: cached_files, branch: info.ref, branches: branches}
   else
     console.log "Updating cache for root #{files_cache_key}"

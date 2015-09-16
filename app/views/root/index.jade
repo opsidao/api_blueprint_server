@@ -3,7 +3,11 @@ extends ../layout
 block menu
   .container-fluid
     .navbar-header
-      .navbar-brand API blueprints
+      .navbar-brand
+        if branch == 'master'
+          a(href = '/') API blueprints
+        else
+          a(href = '/?branch=#{branch}') API blueprints
     .collapse.navbar-collapse.navbar-right
       ul.nav.navbar-nav
         li.dropdown

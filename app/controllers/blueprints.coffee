@@ -7,15 +7,16 @@ client = rfr 'lib/github_client'
 settings = rfr 'lib/settings'
 
 exports.index = (req, res) ->
-  dir = req.param('dir')
+  dir = req.query.dir
   dir = if dir? then "#{dir}/" else ''
+  sha = req.query.sha
 
   path = "#{dir}#{req.params.file_name}"
-  branch = req.param('branch')
+  branch = req.query.branch
 
   info = settings.repo_info(branch, path)
 
-  cache_key = "#{info.ref}-#{path}"
+  cache_key = "#{info.ref}/#{path}/#{sha}"
 
   render = (err, file) ->
     if err?
@@ -31,17 +32,17 @@ exports.index = (req, res) ->
           cache.set cache_key, html
           res.send html
 
-  cached = cache.get(cache_key)[cache_key]
+  cached = cache.get(cache_key)
 
   if cached
     console.log "Serving cached path '#{cache_key}'"
     res.send cached
   else
-    console.log "Updating cache for path '#{cache_key}'"
+    console.log "Updating cache for path '#{cache_key}' sha '#{sha}'"
     blob_info = {
       user: info.user
       repo: info.repo
-      sha: req.param('sha')
+      sha: sha
     }
 
     client.gitdata.getBlob blob_info, render
